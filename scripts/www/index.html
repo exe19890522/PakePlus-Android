@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>修仙肉鸽</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Welcome Screen with Animation -->
+        <div id="welcome-screen" class="screen">
+            <h1 class="game-title">肉鸽修仙传</h1>
+            <p class="subtitle">Q 版修仙 Roguelike 刷怪</p>
+            <div id="title-animation" class="title-animation"></div>
+        </div>
+        
+        <!-- Character Creation Screen -->
+        <div id="character-creation" class="screen hidden">
+            <h1>肉鸽修仙传</h1>
+            <p class="subtitle">Q版修仙 Roguelike 刷怪</p>
+            <div class="panel">
+                <h3>创建角色</h3>
+                <p class="description">开始你的修仙之旅</p>
+                <input type="text" id="create-character-name-input" placeholder="请输入角色昵称..." maxlength="10">
+                <button id="create-character-btn" class="primary-btn large">创建角色</button>
+            </div>
+        </div>
+        
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen hidden">
+            <h1>肉鸽修仙传</h1>
+            <p class="subtitle">Q版修仙 Roguelike 刷怪</p>
+            <div class="panel">
+                <h3>欢迎回来</h3>
+                <p class="description">继续你的修仙之旅</p>
+                <button id="login-btn" class="primary-btn large">登录角色</button>
+            </div>
+        </div>
+        
+        <!-- Main Menu Screen -->
+        <div id="main-screen" class="screen hidden">
+            <!-- Tab Content -->
+            <div class="tab-content active" id="tab-character">
+                <div class="panel character-panel">
+                    <div class="char-tabs">
+                        <button class="char-tab active" data-tab="attr">属性</button>
+                        <button class="char-tab" data-tab="equip">装备</button>
+                        <button class="char-tab" data-tab="skill">技能</button>
+                        <button class="char-tab" data-tab="talent">天赋</button>
+                        <button class="char-tab" data-tab="pet">宠物</button>
+                    </div>
+                    <div class="char-tab-content active" id="char-attr-content">
+                        <div id="char-info"></div>
+                    </div>
+                    <div class="char-tab-content" id="char-equip-content">
+                        <div id="char-equip-slots" class="equipped-slots">
+                            <div class="equipment-row">
+                                <div class="equipment-slot" data-slot="weapon"></div>
+                                <div class="equipment-slot" data-slot="armor"></div>
+                                <div class="equipment-slot" data-slot="helmet"></div>
+                            </div>
+                            <div class="equipment-row">
+                                <div class="equipment-slot" data-slot="ring"></div>
+                                <div class="equipment-slot" data-slot="necklace"></div>
+                                <div class="equipment-slot" data-slot="wrist"></div>
+                            </div>
+                        </div>
+                        <div class="equipment-list-section">
+                            <h4>仓库装备</h4>
+                            <div id="char-equip-list" class="equipment-grid"></div>
+                        </div>
+                    </div>
+                    <div class="char-tab-content" id="char-skill-content">
+                        <div id="char-skill-header"></div>
+                        <div class="character-skills-list" id="char-skills"></div>
+                    </div>
+                    
+                    <!-- 激活技能确认弹窗 -->
+                    <div id="activate-skill-modal" class="modal-overlay hidden">
+                        <div class="modal-content">
+                            <h3 id="activate-skill-title">激活技能</h3>
+                            <p id="activate-skill-message">是否在战斗开局时激活当前技能：<span id="activate-skill-name"></span>？</p>
+                            <div style="border-top:1px solid rgba(255,255,255,0.15);margin:12px 0;"></div>
+                            <div class="modal-buttons">
+                                <button id="activate-skill-confirm" class="activate-confirm-btn">确定激活</button>
+                                <button id="activate-skill-cancel" class="deactivate-confirm-btn">不激活</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 飞剑默认激活提示弹窗 -->
+                    <div id="flying-sword-hint-modal" class="modal-overlay hidden">
+                        <div class="modal-content">
+                            <h3>提示</h3>
+                            <p>飞剑是默认激活的，无法取消激活。</p>
+                            <div class="modal-buttons">
+                                <button id="flying-sword-hint-close" class="neutral-btn">知道了</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 取消激活技能确认弹窗 -->
+                    <div id="deactivate-skill-modal" class="modal-overlay hidden">
+                        <div class="modal-content">
+                            <h3 id="deactivate-skill-title">取消激活</h3>
+                            <p id="deactivate-skill-message">是否取消激活当前技能：<span id="deactivate-skill-name"></span>？</p>
+                            <div style="border-top:1px solid rgba(255,255,255,0.15);margin:12px 0;"></div>
+                            <div class="modal-buttons">
+                                <button id="deactivate-skill-confirm" class="deactivate-confirm-btn">取消激活</button>
+                                <button id="deactivate-skill-cancel" class="neutral-btn">不取消</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 当前激活技能列表弹窗 -->
+                    <div id="active-skills-modal" class="modal-overlay hidden">
+                        <div class="modal-content">
+                            <h3>当前激活的技能</h3>
+                            <p style="color:#aaa;font-size:13px;margin-bottom:10px;">已激活技能数已达上限（最多 5 个，含飞剑），请先取消激活某个非飞剑技能</p>
+                            <div id="active-skills-list" class="active-skills-list"></div>
+                            <div class="modal-buttons">
+                                <button id="active-skills-close" class="secondary-btn">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="char-tab-content" id="char-talent-content"></div>
+                    <div class="char-tab-content" id="char-pet-content"></div>
+                </div>
+            </div>
+            
+            <!-- 征战页面 -->
+            <div class="tab-content" id="tab-battle">
+                <div class="panel battle-panel">
+                    <!-- 标题栏 -->
+                    <div class="battle-header">
+                        <h3>征战</h3>
+                    </div>
+                    <div class="current-dungeon-name" id="current-dungeon-name">所选副本名称</div>
+                    <div class="battle-divider"></div>
+                    <!-- 副本描述及左右切换按钮 -->
+                    <div class="dungeon-nav" style="height: 100px;">
+                        <button class="nav-btn left" id="dungeon-prev" onclick="uiMgr.prevDungeon()">&#8249;</button>
+                        <div class="current-dungeon-desc" id="current-dungeon-desc">所选副本描述</div>
+                        <button class="nav-btn right" id="dungeon-next" onclick="uiMgr.nextDungeon()">&#8250;</button>
+                    </div>
+                    
+                    <div class="current-dungeon-name">副本掉落道具</div>
+                    <div class="battle-divider"></div>
+                    <div class="dungeon-loot-items" id="dungeon-loot-items">列举掉落道具信息</div>
+                    <div class="fatigue-display" id="fatigue-display">疲劳值: 120</div>
+                    <!-- 挑战按钮 -->
+                    <button id="challenge-btn" class="challenge-btn">挑战（-2疲劳/次）</button>
+                </div>
+            </div>
+            
+            <!-- 装备详情弹窗 -->
+            <div id="equipment-detail-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>装备详情</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div id="equipment-detail-info" class="equipment-detail-info">
+                            <!-- 装备详情会动态生成 -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="unequip-btn" class="unequip-btn">卸下</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 装备对比弹窗 -->
+            <div id="equipment-compare-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>装备对比</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="equipment-compare-container">
+                            <!-- 左边：已穿戴装备 -->
+                            <div class="equipment-side equipped">
+                                <h4>已穿戴</h4>
+                                <div id="equipped-equipment-info" class="equipment-info">
+                                    <!-- 已穿戴装备信息会动态生成 -->
+                                </div>
+                            </div>
+                            
+                            <!-- 右边：被点击装备 -->
+                            <div class="equipment-side candidate">
+                                <h4>仓库装备</h4>
+                                <div id="candidate-equipment-info" class="equipment-info">
+                                    <!-- 被点击装备信息会动态生成 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="forge-btn" class="action-btn">强化</button>
+                        <button id="equip-btn" class="action-btn">穿戴</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab-inventory">
+                <div class="panel">
+                    <h3>仓库</h3>
+                    <div class="filter-btns">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="normal">普通</button>
+                        <button class="filter-btn" data-filter="alchemy">丹药</button>
+                        <button class="filter-btn" data-filter="forge">矿材</button>
+                        <button class="filter-btn" data-filter="equipment">装备</button>
+                    </div>
+                    <div id="inventory-list" class="inventory-list"></div>
+                    <div class="function-btns">
+                        <button id="alchemy-btn" class="large-btn">炼丹</button>
+                        <button id="forging-btn" class="large-btn">炼器</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shop Panel -->
+            <div class="tab-content" id="tab-shop">
+                <div class="panel">
+                        <h3>商城</h3>
+                    <div class="shop-items" id="shop-items-container">
+                    </div>
+                    <div class="player-currency">
+                        <span>💰 金币：<span id="player-gold">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Tabs -->
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-tab="character">角色</button>
+                <button class="tab-btn" data-tab="battle">征战</button>
+                <button class="tab-btn" data-tab="inventory">仓库</button>
+                <button class="tab-btn" data-tab="shop">商城</button>
+            </div>
+
+            <!-- Alchemy Panel -->
+            <div id="alchemy-panel" class="sub-panel hidden">
+                <div class="panel">
+                    <div class="alchemy-header">
+                        <button id="alchemy-back" class="back-btn">返回</button>
+                        <h3>炼丹 <span id="alchemy-level" class="alchemy-level">Lv.1</span></h3>
+                    </div>
+                    
+                    <!-- 炼丹炉 -->
+                    <div class="alchemy-furnace-container">
+                        <div class="alchemy-furnace">
+                            <!-- 材料槽位 -->
+                            <div class="material-slots">
+                                <div id="material-slot-1" class="item-slot"></div>
+                                <div id="material-slot-2" class="item-slot"></div>
+                                <div id="material-slot-3" class="item-slot"></div>
+                            </div>
+                            
+                            <!-- 底部槽位容器 -->
+                            <div class="bottom-slots">
+                                <!-- 中和剂槽位 -->
+                                <div class="neutralizer-slot">
+                                    <div class="slot-label">中和剂</div>
+                                    <div id="neutralizer-slot" class="item-slot"></div>
+                                </div>
+                                
+                                <!-- 保底符槽位 -->
+                                <div class="talisman-slot">
+                                    <div class="slot-label">保底符</div>
+                                    <div id="talisman-slot" class="item-slot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 丹方选择 -->
+                    <div class="recipe-section">
+                        <label for="recipe-select">选择丹方：</label>
+                        <select id="recipe-select" class="recipe-select">
+                            <option value="">未选择</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 丹方要求 -->
+                    <div id="recipe-requirements" class="recipe-requirements">
+                        <h4>丹方要求</h4>
+                        <div class="requirements-list"></div>
+                    </div>
+                    
+                    <!-- 成功率显示 -->
+                    <div id="success-rate" class="success-rate">
+                        <h4>成功率：<span id="success-rate-value">0%</span></h4>
+                    </div>
+                    
+                    <!-- 炼丹按钮 -->
+                    <button id="start-alchemy-btn" class="primary-btn large">开始炼丹</button>
+                    
+                    <!-- 炼丹进度条 -->
+                    <div id="alchemy-progress" class="alchemy-progress hidden">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text">5s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 材料选择弹窗 -->
+            <div id="material-select-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>选择材料</h3>
+                        <button class="material-select-close-btn">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 道具网格列表 -->
+                        <div id="material-grid" class="material-grid"></div>
+                        
+                        <!-- 选中道具信息 -->
+                        <div id="selected-material-info" class="selected-material-info">
+                            <h4>选中物品</h4>
+                            <div class="selected-item-details">
+                                <span id="selected-item-name">未选择</span>
+                                <span id="selected-item-count"></span>
+                            </div>
+                            
+                            <!-- 数量控制 -->
+                            <div class="quantity-control">
+                                <button class="quantity-btn">-</button>
+                                <div id="material-quantity" class="quantity-display">1</div>
+                                <button class="quantity-btn"">+</button>
+                            </div>
+                            
+                            <!-- 确定按钮 -->
+                            <button id="confirm-material-btn" class="primary-btn">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Forging Panel -->
+            <div id="forging-panel" class="sub-panel hidden">
+                <div class="panel">
+                    <div class="alchemy-header">
+                        <button id="forging-back" class="back-btn">返回</button>
+                        <h3>炼器 <span id="forging-level" class="forging-level">Lv.1</span></h3>
+                    </div>
+                    
+                    <!-- 炼器鼎 -->
+                    <div class="forging-furnace-container">
+                        <div class="forging-furnace">
+                            <!-- 炼器鼎图片 -->
+                            <div class="furnace-image">
+                                <img src="images/lianqiding.png" alt="炼器鼎">
+                            </div>
+                            
+
+                            
+                            <!-- 材料槽位 -->
+                            <div class="material-slots" id="forging-material-slots">
+                                <!-- 材料槽位会根据装备类型动态生成 -->
+                            </div>
+                            
+                            <!-- 底部槽位容器 -->
+                            <div class="bottom-slots">
+                                <!-- 融合剂槽位 -->
+                                <div class="flux-slot">
+                                    <div class="slot-label">融合剂</div>
+                                    <div id="flux-slot" class="item-slot">
+                                        <div class="item-icon" id="flux-icon"></div>
+                                        <div class="item-count" id="flux-count">0</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 催化剂槽位 -->
+                                <div class="catalyst-slot">
+                                    <div class="slot-label">催化剂</div>
+                                    <div id="catalyst-slot" class="item-slot">
+                                        <div class="item-icon" id="catalyst-icon"></div>
+                                        <div class="item-count" id="catalyst-count"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 装备类型选择 -->
+                    <div class="equipment-type-section">
+                        <label for="equipment-type-select">选择装备类型：</label>
+                        <select id="equipment-type-select" class="equipment-type-select">
+                            <option value="">未选择</option>
+                            <option value="helmet">头盔</option>
+                            <option value="armor">铠甲</option>
+                            <option value="necklace">项链</option>
+                            <option value="wrist">手镯</option>
+                            <option value="ring">戒指</option>
+                            <option value="weapon">武器</option>
+                        </select>
+                    </div>
+                    
+
+                    
+                    <!-- 成功率显示 -->
+                    <div id="forging-success-rate" class="success-rate">
+                        <h4>成功率</h4>
+                        <div class="quality-rates">
+                            <div class="quality-rate">
+                                <span class="quality-label">普通</span>
+                                <div class="progress-bg">
+                                    <div class="progress-fill common"></div>
+                                </div>
+                                <span class="rate-value">0%</span>
+                            </div>
+                            <div class="quality-rate">
+                                <span class="quality-label">优秀</span>
+                                <div class="progress-bg">
+                                    <div class="progress-fill good"></div>
+                                </div>
+                                <span class="rate-value">0%</span>
+                            </div>
+                            <div class="quality-rate">
+                                <span class="quality-label">精良</span>
+                                <div class="progress-bg">
+                                    <div class="progress-fill rare"></div>
+                                </div>
+                                <span class="rate-value">0%</span>
+                            </div>
+                            <div class="quality-rate">
+                                <span class="quality-label">史诗</span>
+                                <div class="progress-bg">
+                                    <div class="progress-fill epic"></div>
+                                </div>
+                                <span class="rate-value">0%</span>
+                            </div>
+                            <div class="quality-rate">
+                                <span class="quality-label">传说</span>
+                                <div class="progress-bg">
+                                    <div class="progress-fill legendary"></div>
+                                </div>
+                                <span class="rate-value">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 开始炼器按钮 -->
+                    <button id="start-forging-btn" class="forging-start-btn">开始炼器</button>
+                    
+                    <!-- 炼器进度条 -->
+                    <div id="forging-progress" class="forging-progress hidden">
+                        <div class="progress-bar">
+                            <div id="forging-progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="forging-progress-text">3s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 工坊页面 -->
+            <div id="workshop-panel" class="sub-panel hidden">
+                <div class="panel">
+                    <div class="alchemy-header">
+                        <button id="workshop-back" class="back-btn">返回</button>
+                        <h3>工坊 <span id="workshop-level" class="skill-level">Lv.1</span></h3>
+                    </div>
+                    
+                    <!-- 装备选择 -->
+                    <div class="equipment-select-section">
+                        <label for="workshop-equipment-select">选择装备：</label>
+                        <select id="workshop-equipment-select" class="equipment-type-select">
+                            <option value="">未选择</option>
+                            <!-- 装备会动态生成 -->
+                        </select>
+                    </div>
+                    
+                    <!-- 装备属性信息区 -->
+                    <div id="workshop-equipment-info" class="equipment-info-section hidden">
+                        <div class="equipment-attrs"></div>
+                    </div>
+                    
+                    <!-- 成功率显示 -->
+                    <div id="workshop-success-rate" class="success-rate">
+                        <h4>强化成功率：<span id="success-rate-value">0%</span></h4>
+                    </div>
+                    
+                    <!-- 强化进度条 -->
+                    <div id="enhance-progress" class="forging-progress hidden">
+                        <div class="progress-bar" style="height: 20px;">
+                            <div id="enhance-progress-fill" class="progress-fill enhance"></div>
+                        </div>
+                        <span id="enhance-progress-text">3s</span>
+                    </div>
+                    
+                    <!-- 强化所需材料显示 -->
+                    <div id="enhance-cost" class="enhance-cost hidden">
+                        <span id="enhance-gold-cost">金币：0</span>
+                        <span id="enhance-stone-cost">强化石：0</span>
+                    </div>
+                    
+                    <!-- 开始强化按钮 -->
+                    <button id="start-enhance-btn" class="primary-btn large">开始强化</button>
+                </div>
+            </div>
+            
+            <!-- 催化剂选择弹窗 -->
+            <div id="catalyst-select-modal" class="modal hidden" onclick="closeCatalystSelectModal()">
+                <div class="modal-content" onclick="event.stopPropagation()">
+                    <div class="modal-header">
+                        <h3>选择催化剂</h3>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 催化剂列表 -->
+                        <div id="catalyst-list" class="catalyst-list"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 炼器结果弹窗 -->
+            <div id="forging-result-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>炼器结果</h3>
+                        <div class="modal-divider"></div>
+                    </div>
+                    <div class="modal-body">
+                        <div id="forging-result-info" class="forging-result-info">
+                            <h4 id="result-equipment-name">装备名称</h4>
+                            <p id="result-equipment-quality">品质：普通</p>
+                            <p id="result-equipment-attribute">属性加成：攻击 +0</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="primary-btn" id="forging-result-confirm">确定</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Talent Panel -->
+            <div id="talent-panel" class="sub-panel hidden">
+                <div class="panel">
+                    <div class="talent-header">
+                        <button id="talent-back" class="back-btn">返回</button>
+                        <h3>天赋</h3>
+                        <div class="talent-point-info">
+                            <span class="talent-point-icon">✨</span>
+                            <span id="talent-point-count">0</span>
+                        </div>
+                    </div>
+                    <div class="talent-container">
+                        <div class="talent-chain" id="talent-chain"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Learn Panel -->
+            <div id="skill-learn-panel" class="sub-panel hidden">
+                <div class="panel">
+                    <div class="talent-header">
+                        <button id="skill-learn-back" class="back-btn">返回</button>
+                        <h3>技能学习</h3>
+                        <div class="skill-book-info">
+                            <span class="skill-book-icon">📕</span>
+                            <span id="skill-book-count">0</span>
+                        </div>
+                    </div>
+                    <div id="skill-learn-content" class="skill-learn-content"></div>
+                </div>
+            </div>
+            
+            <!-- Pet Panel -->
+            <div id="pet-panel" class="sub-panel hidden">
+                <div class="panel">
+                    <div class="pet-header">
+                        <button id="pet-back" class="back-btn">返回</button>
+                        <h3>宠物</h3>
+                        <button id="pet-help-btn" class="help-btn">?</button>
+                    </div>
+                    <!-- 当前出战宠物信息（标题栏下方） -->
+                    <div id="pet-current-status" class="pet-current-status">
+                        <div class="pet-status-content">
+                            <span class="pet-status-label">当前出战：</span>
+                            <span id="pet-status-name" class="pet-status-name">无出战宠物</span>
+                            <span id="pet-status-level" class="pet-status-level"></span>
+                        </div>
+                    </div>
+                    <!-- 宠物列表（纵向滚动） -->
+                    <div class="pet-scroll-list">
+                        <div id="pet-list" class="pet-list"></div>
+                        <div id="pet-empty" class="pet-empty hidden">暂无宠物</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Shop Buy Modal -->
+        <div id="shop-buy-modal" class="modal hidden">
+            <div class="modal-content shop-buy-content">
+                <div class="modal-header">
+                    <h3>购买商品</h3>
+                    <button class="modal-close" onclick="document.getElementById('shop-buy-modal').classList.add('hidden')">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="buy-item-info">
+                        <span class="buy-item-name" id="buy-item-name">商品名称</span>
+                        <span class="buy-item-price" id="buy-item-price">💰 0</span>
+                    </div>
+                    <div class="buy-quantity-control">
+                        <label>购买数量：</label>
+                        <div class="quantity-buttons">
+                            <button class="quantity-btn" onclick="adjustQuantity(-1)">-</button>
+                            <input type="number" id="buy-quantity" value="1" min="1" max="99" readonly>
+                            <button class="quantity-btn" onclick="adjustQuantity(1)">+</button>
+                        </div>
+                        <input type="range" id="buy-quantity-slider" min="1" max="99" value="1" 
+                               oninput="syncQuantity(this.value)" onchange="syncQuantity(this.value)">
+                    </div>
+                    <div class="buy-total-info">
+                        <div class="total-row">
+                            <span>总价：</span>
+                            <span class="total-price" id="buy-total-price">💰 0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>拥有金币：</span>
+                            <span class="player-gold" id="buy-player-gold">💰 0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="cancel-btn" onclick="document.getElementById('shop-buy-modal').classList.add('hidden')">取消</button>
+                    <button class="confirm-buy-btn" onclick="confirmBuy()">购买</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pet Selection Modal -->
+        <div id="pet-selection-modal" class="modal hidden">
+            <div class="modal-content pet-selection-content">
+                <div class="modal-header">
+                    <h3>选择出战宠物</h3>
+                    <button class="modal-close" onclick="closePetSelectionModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div id="pet-selection-list" class="pet-selection-list"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- prop Detail Modal -->
+        <div id="prop-detail-modal" class="modal hidden">
+            <div class="modal-content prop-detail-content">
+                <div class="modal-header">
+                    <h3>道具详情</h3>
+                    <button class="modal-close" onclick="closeMaterialDetailModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="prop-info">
+                        <div class="prop-header">
+                            <h4 class="prop-name" id="prop-name">道具名称</h4>
+                            <p class="prop-count" id="prop-count">道具数量：0</p>
+                        </div>
+                        <div class="prop-simple-intro" id="prop-simple-intro">
+                            <p class="prop-intro-text">简单介绍...</p>
+                        </div>
+                        <div class="prop-hidden-props hidden" id="prop-hidden-props">
+                            <div class="five-elements-info" id="five-elements-info"></div>
+                            <div class="attribute-divider"></div>
+                            <div class="yin-yang-info" id="yin-yang-info"></div>
+                            <div class="special-attributes" id="special-attributes"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 按钮区域 -->
+                    <div class="modal-footer material-actions">
+                        <button class="sell-btn" id="sell-material-btn" onclick="openSellModal()">售卖</button>
+                        <button class="action-btn" id="craft-action-btn" onclick="craftMaterial()">互动</button>
+                        <button class="learn-btn hidden" id="learn-recipe-btn" onclick="learnRecipeFromModal()">学习</button>
+                        <button class="workshop-btn hidden" id="workshop-btn">工坊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sell Modal -->
+        <div id="sell-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>出售数量</h3>
+                </div>
+                <div class="attribute-divider"></div>
+                <div class="modal-body">
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="adjustSellQuantity(-1)">-</button>
+                        <div id="sell-quantity" class="quantity-display">1</div>
+                        <button class="quantity-btn" onclick="adjustSellQuantity(1)">+</button>
+                    </div>
+                    <div id="sell-total" class="total-price">总价：0 金币</div>
+                </div>
+                <div class="attribute-divider"></div>
+                <div class="modal-footer">
+                    <button class="cancel-btn" onclick="closeSellModal()">取消</button>
+                    <button class="confirm-btn" onclick="confirmSell()">确定</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Industry Modal -->
+        <div id="industry-modal" class="modal hidden" onclick="if(event.target === this) this.classList.add('hidden')">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>我的产业</h3>
+                </div>
+                <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                    <div id="industry-content">
+                        <!-- 产业内容会动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <canvas id="gameCanvas"></canvas>
+            <button id="exit-battle-btn" class="exit-battle-btn">×</button>
+            
+            <!-- HUD -->
+            <div id="hud">
+                <div id="status-bars">
+                    <div class="bar-container">
+                        <span class="bar-label">气血</span>
+                        <div class="bar-bg">
+                            <div id="hp-bar" class="bar-fill hp"></div>
+                        </div>
+                        <span id="hp-text" class="bar-text">100/100</span>
+                    </div>
+                    <div class="bar-container">
+                        <span class="bar-label">法力</span>
+                        <div class="bar-bg">
+                            <div id="mp-bar" class="bar-fill mp"></div>
+                        </div>
+                        <span id="mp-text" class="bar-text">50/50</span>
+                    </div>
+                    <div class="bar-container">
+                        <span class="bar-label">经验</span>
+                        <div class="bar-bg">
+                            <div id="exp-bar" class="bar-fill exp"></div>
+                        </div>
+                        <span id="level-text" class="bar-text">Lv.1</span>
+                    </div>
+                </div>
+                
+                <!-- 属性记录 -->
+                <div id="att-record" class="att-record"></div>
+                
+                <!-- 战斗日志区 -->
+                <div id="battle-log" class="battle-log hidden"></div>
+                
+                <div id="wave-info">
+                    <span id="wave-label">波次 0/30</span>
+                    <div class="progress-bg">
+                        <div id="progress-bar" class="progress-fill"></div>
+                    </div>
+                    <span id="boss-timer"></span>
+                </div>
+                
+                <div id="skill-panel">
+                    <!-- 技能槽位由 uiMgr.updatePlayer 按 learnOrder 动态生成 -->
+                </div>
+            </div>
+            
+            <!-- Joystick -->
+            <div id="joystick-area">
+                <div id="joystick-base">
+                    <div id="joystick-thumb"></div>
+                </div>
+            </div>
+            
+            <!-- Level Up Panel -->
+            <div id="level-up-panel" class="modal hidden">
+                <div class="modal-content">
+                    <h2>升级选择</h2>
+                    <div id="skill-options"></div>
+                    <button id="ad-btn" class="ad-btn">看广告回血</button>
+                </div>
+            </div>
+                        
+            <!-- Game Over Panel -->
+            <div id="game-over-panel" class="modal hidden">
+                <div class="modal-content">
+                    <h2 id="game-over-title">游戏结束</h2>
+                    <div id="game-stats">
+                        <p>到达波次: <span id="final-wave">0</span></p>
+                        <p>角色等级: <span id="final-level">1</span></p>
+                    </div>
+                    <button id="restart-btn" class="primary-btn">重新开始</button>
+                    <button id="to-menu-btn" class="secondary-btn">返回主页</button>
+                </div>
+            </div>
+            
+            <!-- 退出战斗二次确认弹窗 -->
+            <div id="exit-confirm-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>退出战斗</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>确定要退出当前战斗吗？</p>
+                        <p style="margin: 10px 10px; color: #ccc; font-size: 14px;">退出后当前战斗进度将不会保存。</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="exit-confirm-btn" class="primary-btn">确定退出</button>
+                        <button id="exit-cancel-btn" class="secondary-btn">取消</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 存档恢复弹窗 -->
+            <div id="save-recover-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>存档加载失败</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="recover-error-message">存档数据损坏或版本不兼容</p>
+                        <p style="margin-top: 10px; color: #ccc; font-size: 14px;">是否从备份中恢复数据？</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="recover-from-backup-btn" class="primary-btn">从备份恢复</button>
+                        <button id="new-game-btn" class="secondary-btn">重新开始</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示信息 -->
+        <div id="equipment-toast" class="equipment-toast hidden"></div>
+    </div>
+    
+    <!-- Core modules -->
+    <script src="js/core/config.js"></script>
+    <script type="module" src="js/core/dataMgr.js"></script> 
+    <script src="js/core/wave-manager.js"></script>
+    <script src="js/core/renderer.js"></script>
+    
+    <!-- Entity modules -->
+    <script type="module" src="js/entity/player.js"></script>
+    <script src="js/entity/monster.js"></script>
+    <script src="js/entity/drop.js"></script>
+    <script src="js/entity/skill-box.js"></script>
+    <script src="js/entity/tower.js"></script>
+    <script src="js/entity/pet.js"></script>
+    
+    <!-- Skill modules -->
+    <script src="js/skill/effect.js"></script>
+    
+    <!-- UI modules -->
+    <script type="module" src="js/ui/uiMgr.js"></script>
+    <script src="js/ui/joystick.js"></script>
+    
+    <!-- Main game -->
+    <script type="module" src="js/game.js"></script>
+    
+    <script type="module">
+        import { dataMgr } from './js/core/dataMgr.js';
+        import { uiMgr } from './js/ui/uiMgr.js';
+
+        // 初始化游戏
+        window.addEventListener('load', function() {
+            // 显示欢迎屏幕动画
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const titleElement = welcomeScreen.querySelector('.game-title');
+            
+            // 标题淡入动画
+            titleElement.style.opacity = '0';
+            titleElement.style.transition = 'opacity 2s ease';
+            
+            setTimeout(() => {
+                titleElement.style.opacity = '1';
+            }, 100);
+            // 2 秒后检查存档并显示相应界面
+            setTimeout(() => {
+                const result = dataMgr.loadLocal();
+                
+                if (result === null) {
+                    welcomeScreen.classList.add('hidden');
+                    document.getElementById('character-creation').classList.remove('hidden');
+                } else if (result.error) {
+                    welcomeScreen.classList.add('hidden');
+                    if (dataMgr.hasBackup()) {
+                        uiMgr.showSaveRecoverModal(result.message);
+                    } else {
+                        alert(result.message + '，且没有备份数据。将重新开始游戏。');
+                        document.getElementById('character-creation').classList.remove('hidden');
+                    }
+                } else {
+                    welcomeScreen.classList.add('hidden');
+                    document.getElementById('login-screen').classList.remove('hidden');
+                }
+            }, 2000);
+        });
+        
+        // 创建角色按钮
+        document.getElementById('create-character-btn').addEventListener('click', function() {
+            handleCreateCharacter();
+        });
+        
+        // 输入框回车键支持
+        const nicknameInput = document.getElementById('create-character-name-input');
+        if (nicknameInput) {
+            nicknameInput.addEventListener('keypress', function(e) {
+                console.log('输入框回车键支持:',e.key);
+                if (e.key === 'Enter') {
+                    handleCreateCharacter();
+                }
+            });
+        }
+        
+        // 创建角色处理函数
+        function handleCreateCharacter() {
+            // 获取输入的昵称
+            const nicknameInput = document.getElementById('create-character-name-input');
+            const nickname = nicknameInput.value.trim();
+            // 验证昵称
+            if (!nickname) {
+                alert('请输入角色昵称！');
+                nicknameInput.focus();
+                return;
+            }
+            // 创建新角色并设置昵称
+            dataMgr.initSaveData(nickname);
+            // 登录到主界面
+            loginToMain();
+        }
+        
+        // 登录按钮
+        document.getElementById('login-btn').addEventListener('click', function() {
+            //登录到主界面
+            loginToMain();
+        });
+        function loginToMain(){
+            // 关闭欢迎页面
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('character-creation').classList.add('hidden');
+            
+            // 加载存档数据
+            const loadResult = dataMgr.loadToGame();
+            
+            if (!loadResult.success && loadResult.reason !== 'no_save') {
+                console.error('存档加载失败:', loadResult);
+                if (dataMgr.hasBackup()) {
+                    uiMgr.showSaveRecoverModal(loadResult.message);
+                } else {
+                    alert(loadResult.message + '，且没有备份数据。将重新开始游戏。');
+                    document.getElementById('character-creation').classList.remove('hidden');
+                }
+                return;
+            }
+            
+            console.warn('After loadToGame:', dataMgr.getRoleData());
+            
+            // 显示主菜单
+            uiMgr.showMainMenu();
+            // 更新 UI
+            uiMgr.updateCharacterInfo();
+            uiMgr.updateInventoryList('all');
+            
+            // 添加矿材和移除装备
+            //addDebugMaterial();
+            //addDebugAlchemyMaterial();
+        }
+        function addDebugForgeMaterial(){
+            // 矿材列表
+            const minerals = [
+                'ore_1', // 玄铁石
+                'ore_2', // 赤铜石
+                'ore_3', // 秘银石
+                'ore_4', // 紫金石
+                'ore_5', // 陨铁
+                'ore_6', // 天外神石
+                'ore_7', // 万年寒玉
+                'ore_8'  // 凤凰血晶
+            ];
+            // 添加所有矿材，每样100个
+            minerals.forEach(mineralId => {
+                dataMgr.addMaterial('forge', mineralId, 100);
+                console.log(`添加了100个 ${mineralId}`);
+            });
+        }
+        function addDebugAlchemyMaterial(){
+            for(let o = 1;o <= 15;o++){
+                dataMgr.addMaterial('alchemy', `herb_${o}`, 100);
+                console.log(`添加了100个 herb_${o}`);
+            }
+        }
+        // 重新开始游戏按钮
+        document.getElementById('restart-btn').addEventListener('click', function() {
+            console.warn('restart-btn click');
+            dataMgr.initSaveData(dataMgr.getRoleData().nickname);
+            window.game.startGame();//重新开始游戏
+        });
+        // 返回主页按钮
+        document.getElementById('to-menu-btn').addEventListener('click', function() {
+            console.warn('to-menu-btn click');
+            dataMgr.saveLocal();
+            uiMgr.hideGameOver();
+            uiMgr.showMainMenu();
+        });
+    </script>
+</body>
+</html>
+
