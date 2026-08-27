@@ -1,0 +1,1039 @@
+{"items":[
+    {
+        "id": "herb_1",
+        "name": "青灵草",
+        "type": "alchemy",
+        "att": [
+            {"ele": 2, "value": 0.6},
+            {"ele": 3, "value": 0.3},
+            {"ele": 6, "value": 0.5}
+        ],
+        "quality": 1,
+        "description": "炼丹材料，含有木、水元素和阴属性"
+    },
+    {
+        "id": "herb_2",
+        "name": "紫云花",
+        "type": "alchemy",
+        "att": [
+            {"ele": 1, "value": 0.5},
+            {"ele": 2, "value": 0.4},
+            {"ele": 7, "value": 0.3}
+        ],
+        "quality": 1,
+        "description": "炼丹材料，含有金、木元素和阳属性"
+    },
+    {
+        "id": "herb_3",
+        "name": "火阳芝",
+        "type": "alchemy",
+        "att": [
+            {"ele": 4, "value": 0.7},
+            {"ele": 2, "value": 0.2},
+            {"ele": 8, "value": 0.6}
+        ],
+        "quality": 2,
+        "description": "炼丹材料，含有火、木元素和混沌属性"
+    },
+    {
+        "id": "herb_4",
+        "name": "寒冰莲",
+        "type": "alchemy",
+        "att": [
+            {"ele": 3, "value": 0.8},
+            {"ele": 1, "value": 0.1},
+            {"ele": 6, "value": 0.4}
+        ],
+        "quality": 2,
+        "description": "炼丹材料，含有水、金元素和阴属性"
+    },
+    {
+        "id": "herb_5",
+        "name": "还魂草",
+        "type": "alchemy",
+        "att": [
+            {"ele": 2, "value": 0.5},
+            {"ele": 5, "value": 0.3},
+            {"ele": 4, "value": 0.1},
+            {"ele": 7, "value": 0.7}
+        ],
+        "quality": 3,
+        "description": "炼丹材料，含有木、土、火元素和阳属性"
+    },
+    {
+        "id": "herb_6",
+        "name": "金线莲",
+        "type": "alchemy",
+        "att": [
+            {"ele": 1, "value": 0.6},
+            {"ele": 3, "value": 0.3},
+            {"ele": 8, "value": 0.2}
+        ],
+        "quality": 3,
+        "description": "炼丹材料，含有金、水元素和混沌属性"
+    },
+    {
+        "id": "herb_7",
+        "name": "木灵叶",
+        "type": "alchemy",
+        "att": [
+            {"ele": 2, "value": 0.9},
+            {"ele": 4, "value": 0.05},
+            {"ele": 6, "value": 0.8}
+        ],
+        "quality": 4,
+        "description": "炼丹材料，含有木、火元素和阴属性"
+    },
+    {
+        "id": "herb_8",
+        "name": "水灵花",
+        "type": "alchemy",
+        "att": [
+            {"ele": 3, "value": 0.8},
+            {"ele": 2, "value": 0.15},
+            {"ele": 7, "value": 0.5}
+        ],
+        "quality": 4,
+        "description": "炼丹材料，含有水、木元素和阳属性"
+    },
+    {
+        "id": "herb_9",
+        "name": "火灵果",
+        "type": "alchemy",
+        "att": [
+            {"ele": 4, "value": 0.85},
+            {"ele": 5, "value": 0.1},
+            {"ele": 8, "value": 0.9}
+        ],
+        "quality": 5,
+        "description": "炼丹材料，含有火、土元素和混沌属性"
+    },
+    {
+        "id": "herb_10",
+        "name": "土灵根",
+        "type": "alchemy",
+        "att": [
+            {"ele": 5, "value": 0.7},
+            {"ele": 1, "value": 0.2},
+            {"ele": 6, "value": 0.3}
+        ],
+        "quality": 5,
+        "description": "炼丹材料，含有土、金元素和阴属性"
+    },
+    {
+        "id": "herb_11",
+        "name": "阴阳草",
+        "type": "alchemy",
+        "att": [
+            {"ele": 2, "value": 0.4},
+            {"ele": 3, "value": 0.4},
+            {"ele": 4, "value": 0.1},
+            {"ele": 5, "value": 0.1},
+            {"ele": 7, "value": 0.6}
+        ],
+        "quality": 6,
+        "description": "炼丹材料，含有木、水、火、土元素和阳属性"
+    },
+    {
+        "id": "herb_12",
+        "name": "五行花",
+        "type": "alchemy",
+        "att": [
+            {"ele": 1, "value": 0.2},
+            {"ele": 2, "value": 0.2},
+            {"ele": 3, "value": 0.2},
+            {"ele": 4, "value": 0.2},
+            {"ele": 5, "value": 0.2},
+            {"ele": 8, "value": 0.4}
+        ],
+        "quality": 6,
+        "description": "炼丹材料，含有金、木、水、火、土全部元素和混沌属性"
+    },
+    {
+        "id": "herb_13",
+        "name": "金精草",
+        "type": "alchemy",
+        "att": [
+            {"ele": 1, "value": 0.8},
+            {"ele": 4, "value": 0.15},
+            {"ele": 6, "value": 0.7}
+        ],
+        "quality": 2,
+        "description": "炼丹材料，含有金、火元素和阴属性"
+    },
+    {
+        "id": "herb_14",
+        "name": "木魂根",
+        "type": "alchemy",
+        "att": [
+            {"ele": 2, "value": 0.7},
+            {"ele": 3, "value": 0.2},
+            {"ele": 5, "value": 0.1},
+            {"ele": 7, "value": 0.5}
+        ],
+        "quality": 3,
+        "description": "炼丹材料，含有木、水、土元素和阳属性"
+    },
+    {
+        "id": "herb_15",
+        "name": "水魂花",
+        "type": "alchemy",
+        "att": [
+            {"ele": 3, "value": 0.85},
+            {"ele": 1, "value": 0.1},
+            {"ele": 8, "value": 0.3}
+        ],
+        "quality": 4,
+        "description": "炼丹材料，含有水、金元素和混沌属性"
+    },
+    {
+        "id": "ore_1",
+        "name": "玄铁石",
+        "type": "forge",
+        "quality": 1,
+        "description": "基础矿物，可用于炼器"
+    },
+    {
+        "id": "ore_2",
+        "name": "赤铜石",
+        "type": "forge",
+        "quality": 1,
+        "description": "基础矿石，可用于炼器"
+    },
+    {
+        "id": "ore_3",
+        "name": "秘银石",
+        "type": "forge",
+        "quality": 2,
+        "description": "优良矿物，可用于炼器"
+    },
+    {
+        "id": "ore_4",
+        "name": "紫金石",
+        "type": "forge",
+        "quality": 2,
+        "description": "优良矿物，可用于炼器"
+    },
+    {
+        "id": "ore_5",
+        "name": "陨铁",
+        "type": "forge",
+        "quality": 3,
+        "description": "天外陨铁，珍惜材料，可用于炼器"
+    },
+    {
+        "id": "ore_6",
+        "name": "天外神石",
+        "type": "forge",
+        "quality": 3,
+        "description": "天外神石，珍惜材料，可用于炼器"
+    },
+    {
+        "id": "ore_7",
+        "name": "万年寒玉",
+        "type": "forge",
+        "quality": 4,
+        "description": "万年寒玉，极品材料，可用于炼器"
+    },
+    {
+        "id": "ore_8",
+        "name": "凤凰血晶",
+        "type": "forge",
+        "quality": 5,
+        "description": "蕴含凤凰之力，神级材料，可用于炼器"
+    },
+    
+    {
+        "id": "skill_book",
+        "name": "技能书",
+        "type": "skillBook",
+        "quality": 3,
+        "description": "用于学习和升级技能"
+    },
+    {
+        "id": "qingling_water",
+        "name": "轻灵水",
+        "type": "neutralizer",
+        "quality": 2,
+        "description": "炼丹材料，作为中和剂使用"
+    },
+    {
+        "id": "quartz_sand",
+        "name": "石英砂",
+        "type": "binder",
+        "quality": 3,
+        "description": "炼器材料，作为融合剂使用"
+    },
+    {
+        "id": "laojun_dew",
+        "name": "老君仙露",
+        "type": "guarantee",
+        "quality": 5,
+        "description": "炼丹保底符，提升 20% 成功率并提升丹药品级"
+    },
+    {
+        "id": "stone_fire",
+        "name": "石中火",
+        "type": "catalyst",
+        "quality": 5,
+        "description": "炼器保底符，成功后额外增加 20% 属性或 5% 特殊属性的出现概率"
+    },
+    {
+        "id": "treasure_mirror",
+        "name": "百宝鉴",
+        "type": "tool",
+        "quality": 5,
+        "useTimes": 100,
+        "description": "查看材料隐藏属性，每次使用减少1点耐久度（共100点）"
+    },
+    {
+        "id": "potion_health",
+        "name": "气血丹",
+        "type": "dan",
+        "att": [{"key": "hp", "value": 100}],
+        "quality": 2,
+        "description": "立即恢复 100 点气血"
+    },
+    {
+        "id": "potion_mana",
+        "name": "法力丹",
+        "type": "dan",
+        "att": [{"key": "mp", "value": 80}],
+        "quality": 2,
+        "description": "立即恢复 80 点法力"
+    },
+    {
+        "id": "enhance_stone",
+        "name": "强化石",
+        "type": "forge",
+        "quality": 2,
+        "description": "用于装备强化的特殊矿石"
+    },
+    {
+        "id": "potion_strength",
+        "name": "力量丹",
+        "type": "dan",
+        "att": [{"key": "attack", "value": 50}],
+        "quality": 3,
+        "description": "增加 50 点攻击"
+    },
+    {
+        "id": "potion_defense",
+        "name": "防御丹",
+        "type": "dan",
+        "att": [{"key": "defense", "value": 30}],
+        "quality": 3,
+        "description": "增加 30 点防御"
+    },
+    {
+        "id": "potion_speed",
+        "name": "速度丹",
+        "type": "dan",
+        "att": [{"key": "speed", "value": 20}],
+        "quality": 3,
+        "description": "增加 20 点速度"
+    },
+    {
+        "id": "potion_critical",
+        "name": "暴击丹",
+        "type": "dan",
+        "att": [{"key": "critical", "value": 15}],
+        "quality": 4,
+        "description": "增加 15 点暴击"
+    },
+    {
+        "id": "potion_evasion",
+        "name": "闪避丹",
+        "type": "dan",
+        "att": [{"key": "evasion", "value": 10}],
+        "quality": 4,
+        "description": "增加 10 点闪避"
+    },
+    {
+        "id": "potion_regen",
+        "name": "回复丹",
+        "type": "dan",
+        "att": [{"key": "regen", "value": 200}],
+        "quality": 4,
+        "description": "增加 200 点回复"
+    },
+    {
+        "id": "potion_attack",
+        "name": "攻击丹",
+        "type": "dan",
+        "att": [{"key": "attack", "value": 60}],
+        "quality": 5,
+        "description": "增加 60 点攻击"
+    },
+    {
+        "id": "potion_magic",
+        "name": "魔法丹",
+        "type": "dan",
+        "att": [{"key": "magic", "value": 80}],
+        "quality": 5,
+        "description": "增加 80 点魔法"
+    },
+    {
+        "id": "recipe_health",
+        "name": "气血丹方",
+        "type": "recipe",
+        "description": "用于炼制气血丹（恢复100点气血）",
+        "dan": "potion_health",
+        "materials": 3,
+        "att": [
+            {"ele": 2, "value": 0.3},
+            {"ele": 4, "value": 0.2}
+        ],
+        "broken": [
+            {"ele": 2, "min": 0.3, "max": 0.4},
+            {"ele": 4, "min": 0.2, "max": 0.3}
+        ],
+        "quality": 2
+    },
+    {
+        "id": "recipe_mana",
+        "name": "法力丹方",
+        "type": "recipe",
+        "description": "用于炼制法力丹（恢复80点法力）",
+        "dan": "potion_mana",
+        "materials": 2,
+        "att": [
+            {"ele": 3, "value": 0.4},
+            {"ele": 2, "value": 0.2}
+        ],
+        "broken": [
+            {"ele": 3, "min": 0.12, "max": 0.5},
+            {"ele": 2, "min": 0.15, "max": 0.3}
+        ],
+        "quality": 2
+    },
+    {
+        "id": "recipe_strength",
+        "name": "力量丹方",
+        "type": "recipe",
+        "description": "用于炼制力量丹（增加50点攻击）",
+        "dan": "potion_strength",
+        "materials": 3,
+        "att": [
+            {"ele": 1, "value": 0.5},
+            {"ele": 4, "value": 0.3}
+        ],
+        "broken": [
+            {"ele": 1, "min": 0.3, "max": 0.6},
+            {"ele": 4, "min": 0.1, "max": 0.4}
+        ],
+        "quality": 3
+    },
+    {
+        "id": "recipe_defense",
+        "name": "防御丹方",
+        "type": "recipe",
+        "description": "用于炼制防御丹（增加30点防御）",
+        "dan": "potion_defense",
+        "materials": 2,
+        "att": [
+            {"ele": 5, "value": 0.4},
+            {"ele": 1, "value": 0.3}
+        ],
+        "broken": [
+            {"ele": 5, "min": 0.3, "max": 0.5},
+            {"ele": 1, "min": 0.2, "max": 0.4}
+        ],
+        "quality": 3
+    },
+    {
+        "id": "recipe_speed",
+        "name": "速度丹方",
+        "type": "recipe",
+        "description": "用于炼制速度丹（增加20点速度）",
+        "dan": "potion_speed",
+        "materials": 2,
+        "att": [
+            {"ele": 3, "value": 0.3},
+            {"ele": 2, "value": 0.3},
+            {"ele": 1, "value": 0.2}
+        ],
+        "broken": [
+            {"ele": 3, "min": 0.3, "max": 0.4},
+            {"ele": 2, "min": 0.2, "max": 0.4}
+        ],
+        "quality": 3
+    },
+    {
+        "id": "recipe_critical",
+        "name": "暴击丹方",
+        "type": "recipe",
+        "description": "用于炼制暴击丹（增加15点暴击）",
+        "dan": "potion_critical",
+        "materials": 2,
+        "att": [
+            {"ele": 1, "value": 0.4},
+            {"ele": 4, "value": 0.4}
+        ],
+        "broken": [
+            {"ele": 1, "min": 0.3, "max": 0.5},
+            {"ele": 4, "min": 0.1, "max": 0.5}
+        ],
+        "quality": 4
+    },
+    {
+        "id": "recipe_evasion",
+        "name": "闪避丹方",
+        "type": "recipe",
+        "description": "用于炼制闪避丹（增加10点闪避）",
+        "dan": "potion_evasion",
+        "materials": 2,
+        "att": [
+            {"ele": 3, "value": 0.5},
+            {"ele": 2, "value": 0.3}
+        ],
+        "broken": [
+            {"ele": 3, "min": 0.5, "max": 0.6},
+            {"ele": 2, "min": 0.2, "max": 0.4}
+        ],
+        "quality": 4
+    },
+    {
+        "id": "recipe_regen",
+        "name": "回复丹方",
+        "type": "recipe",
+        "description": "用于炼制回复丹（增加200点回复）",
+        "dan": "potion_regen",
+        "materials": 1,
+        "att": [
+            {"ele": 2, "value": 0.4},
+            {"ele": 3, "value": 0.4},
+            {"ele": 5, "value": 0.1}
+        ],
+        "broken": [
+            {"ele": 2, "min": 0.15, "max": 0.5},
+            {"ele": 3, "min": 0.2, "max": 0.5}
+        ],
+        "quality": 4
+    },
+    {
+        "id": "recipe_attack",
+        "name": "攻击丹方",
+        "type": "recipe",
+        "description": "用于炼制攻击丹（增加60点攻击）",
+        "dan": "potion_attack",
+        "materials": 2,
+        "att": [
+            {"ele": 1, "value": 0.6},
+            {"ele": 4, "value": 0.3}
+        ],
+        "broken": [
+            {"ele": 1, "min": 0.6, "max": 0.7},
+            {"ele": 4, "min": 0.1, "max": 0.4}
+        ],
+        "quality": 5
+    },
+    {
+        "id": "recipe_magic",
+        "name": "魔法丹方",
+        "type": "recipe",
+        "description": "用于炼制魔法丹（增加80点魔法）",
+        "dan": "potion_magic",
+        "materials": 3,
+        "att": [
+            {"ele": 3, "value": 0.6},
+            {"ele": 2, "value": 0.2},
+            {"ele": 4, "value": 0.1}
+        ],
+        "broken": [
+            {"ele": 3, "min": 0.5, "max": 0.7},
+            {"ele": 2, "min": 0.2, "max": 0.3}
+        ],
+        "quality": 5
+    },
+
+    {
+        "id": "helmet_1",
+        "name": "布帽",
+        "type": "equipment",
+        "slot": "helmet",
+        "att": [],
+        "description": "普通布制帽子，防御力较低"
+    },
+    {
+        "id": "helmet_2",
+        "name": "皮帽",
+        "type": "equipment",
+        "slot": "helmet",
+        "att": [],
+        "description": "皮革制成的帽子，有一定的防护能力"
+    },
+    {
+        "id": "helmet_3",
+        "name": "铁盔",
+        "type": "equipment",
+        "slot": "helmet",
+        "att": [],
+        "description": "铁制头盔，防护能力较强"
+    },
+    {
+        "id": "helmet_4",
+        "name": "钢盔",
+        "type": "equipment",
+        "slot": "helmet",
+        "att": [],
+        "description": "精钢打造的头盔，防护力出众"
+    },
+    {
+        "id": "helmet_5",
+        "name": "金冠",
+        "type": "equipment",
+        "slot": "helmet",
+        "att": [],
+        "description": "金色圣冠，神级防护装备"
+    },
+    
+    {
+        "id": "armor_1",
+        "name": "布衣",
+        "type": "equipment",
+        "slot": "armor",
+        "att": [],
+        "description": "普通布制衣服，防御力较低"
+    },
+    {
+        "id": "armor_2",
+        "name": "皮甲",
+        "type": "equipment",
+        "slot": "armor",
+        "att": [],
+        "description": "皮革制成的护甲，有一定的防护能力"
+    },
+    {
+        "id": "armor_3",
+        "name": "铁甲",
+        "type": "equipment",
+        "slot": "armor",
+        "att": [],
+        "description": "铁制护甲，防护能力较强"
+    },
+    {
+        "id": "armor_4",
+        "name": "钢甲",
+        "type": "equipment",
+        "slot": "armor",
+        "att": [],
+        "description": "精钢打造的护甲，防护力出众"
+    },
+    {
+        "id": "armor_5",
+        "name": "金甲",
+        "type": "equipment",
+        "slot": "armor",
+        "att": [],
+        "description": "金色圣甲，神级防护装备"
+    },
+    
+    {
+        "id": "necklace_1",
+        "name": "铜项链",
+        "type": "equipment",
+        "slot": "necklace",
+        "att": [],
+        "description": "普通铜制项链，附带少量属性"
+    },
+    {
+        "id": "necklace_2",
+        "name": "银项链",
+        "type": "equipment",
+        "slot": "necklace",
+        "att": [],
+        "description": "银制项链，附带一定属性加成"
+    },
+    {
+        "id": "necklace_3",
+        "name": "金项链",
+        "type": "equipment",
+        "slot": "necklace",
+        "att": [],
+        "description": "金制项链，附带较多属性加成"
+    },
+    {
+        "id": "necklace_4",
+        "name": "铁项链",
+        "type": "equipment",
+        "slot": "necklace",
+        "att": [],
+        "description": "玄铁打造的项链，附带大量属性"
+    },
+    {
+        "id": "necklace_5",
+        "name": "钨项链",
+        "type": "equipment",
+        "slot": "necklace",
+        "att": [],
+        "description": "钨金神链，神级属性加成"
+    },
+    
+    {
+        "id": "bracelet_1",
+        "name": "布腕带",
+        "type": "equipment",
+        "slot": "wrist",
+        "att": [],
+        "description": "普通布料制作的腕带，附带少量属性"
+    },
+    {
+        "id": "bracelet_2",
+        "name": "皮腕带",
+        "type": "equipment",
+        "slot": "wrist",
+        "att": [],
+        "description": "皮革制作的腕带，附带一定属性加成"
+    },
+    {
+        "id": "bracelet_3",
+        "name": "木腕甲",
+        "type": "equipment",
+        "slot": "wrist",
+        "att": [],
+        "description": "硬木制作的护腕，附带较多属性加成"
+    },
+    {
+        "id": "bracelet_4",
+        "name": "钢腕甲",
+        "type": "equipment",
+        "slot": "wrist",
+        "att": [],
+        "description": "精钢打造的护腕，附带大量属性加成"
+    },
+    {
+        "id": "bracelet_5",
+        "name": "金腕甲",
+        "type": "equipment",
+        "slot": "wrist",
+        "att": [],
+        "description": "金色圣级护腕，神级属性加成"
+    },
+    
+    {
+        "id": "ring_1",
+        "name": "铁戒指",
+        "type": "equipment",
+        "slot": "ring",
+        "att": [],
+        "description": "普通铁戒指，附带少量属性"
+    },
+    {
+        "id": "ring_2",
+        "name": "铜戒指",
+        "type": "equipment",
+        "slot": "ring",
+        "att": [],
+        "description": "铜制戒指，附带一定属性加成"
+    },
+    {
+        "id": "ring_3",
+        "name": "银戒指",
+        "type": "equipment",
+        "slot": "ring",
+        "att": [],
+        "description": "银制戒指，附带较多属性加成"
+    },
+    {
+        "id": "ring_4",
+        "name": "金戒指",
+        "type": "equipment",
+        "slot": "ring",
+        "att": [],
+        "description": "金制戒指，附带大量属性加成"
+    },
+    {
+        "id": "ring_5",
+        "name": "玉戒指",
+        "type": "equipment",
+        "slot": "ring",
+        "att": [],
+        "description": "玉制神戒，神级属性加成"
+    },
+    
+    {
+        "id": "weapon_1",
+        "name": "木剑",
+        "type": "equipment",
+        "slot": "weapon",
+        "att": [],
+        "description": "普通木剑，攻击力较低"
+    },
+    {
+        "id": "weapon_2",
+        "name": "铁剑",
+        "type": "equipment",
+        "slot": "weapon",
+        "att": [],
+        "description": "铁制长剑，有一定的攻击力"
+    },
+    {
+        "id": "weapon_3",
+        "name": "钢剑",
+        "type": "equipment",
+        "slot": "weapon",
+        "att": [],
+        "description": "精钢打造的长剑，攻击力较强"
+    },
+    {
+        "id": "weapon_4",
+        "name": "金剑",
+        "type": "equipment",
+        "slot": "weapon",
+        "att": [],
+        "description": "金色圣剑，攻击力出众"
+    },
+    {
+        "id": "weapon_5",
+        "name": "玉剑",
+        "type": "equipment",
+        "slot": "weapon",
+        "att": [],
+        "description": "玉制神剑，神级攻击力"
+    },{
+        "id": "lingmi",
+        "name": "灵米",
+        "type": "food",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的灵米，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "bupi",
+        "name": "布匹",
+        "type": "goods",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的布皮，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "shoupi",
+        "name": "兽皮",
+        "type": "goods",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的灵米，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "yaocao",
+        "name": "药草",
+        "type": "goods",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的灵米，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "daogu",
+        "name": "稻谷",
+        "type": "goods",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的灵米，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "mucai",
+        "name": "木材",
+        "type": "goods",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的灵米，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "shicai",
+        "name": "石材",
+        "type": "goods",
+        "att": [],
+        "quality": 2,
+        "description": "可食用的灵米，可增加自身灵气，略微提高属性加成"
+    },{
+        "id": "gold",
+        "name": "金币",
+        "type": "money",
+        "att": [],
+        "quality": 2,
+        "description": "使用后获得相应金币数量"
+    }
+],
+"mall":[
+    {"id": "skill_book", "price": 100},
+    {"id": "qingling_water", "price": 30},
+    {"id": "quartz_sand", "price": 50},
+    {"id": "laojun_dew", "price": 200},
+    {"id": "stone_fire", "price": 180},
+    {"id": "treasure_mirror", "price": 500},
+    {"id": "enhance_stone", "price": 50},
+    {"id": "potion_health", "price": 50},
+    {"id": "potion_mana", "price": 50},
+    {"id": "recipe_health", "price": 50},
+    {"id": "recipe_mana", "price": 50},
+    {"id": "recipe_strength", "price": 80},
+    {"id": "recipe_defense", "price": 80},
+    {"id": "recipe_speed", "price": 80},
+    {"id": "recipe_critical", "price": 120},
+    {"id": "recipe_evasion", "price": 120},
+    {"id": "recipe_regen", "price": 120},
+    {"id": "recipe_attack", "price": 150},
+    {"id": "recipe_magic", "price": 150}
+],
+"dungeon": {
+    "1":{
+               "id": "1",
+        "name": "新手训练场",
+        "description": "新手训练场，可获得100金币",
+        "quality": 1,
+        "monsters": [{"id":1,"lv":1},{"id":2,"lv":2}],
+        "gold": 100,
+        "reward": [{"id":"gold","num":100}]
+    }
+},
+"monster":{
+        "1":{
+            "name":"小兵",
+            "att":{
+                "atk":10,
+                "def":10,
+                "hp":100
+            },
+            "gold":100,
+            "loot":[{"id":"gold","num":100},{"id":"herb_5","num":2}]
+        },
+        "2":{
+            "name":"刀兵",
+            "att":{
+                "atk":20,
+                "def":10,
+                "hp":200
+            },
+            "gold":200,
+            "loot":[{"id":"gold","num":100},{"id":"herb_5","num":2}]
+        }
+    },
+"skills": {
+    "flying_sword": {
+      "id": "flying_sword",
+      "name": "飞剑",
+      "description": "自动攻击最近敌人(伤害取决于角色攻击属性)",
+      "level": 1,
+      "maxLevel": 10,
+      "damage": 1,
+      "dmgUpPer":15,
+      "cooldown": 0,
+      "mpCost": 0
+      
+    },
+    "talisman": {
+      "id": "talisman",
+      "name": "符箓",
+      "description": "直线攻击路径上的敌人",
+      "level": 0,
+      "maxLevel": 10,
+      "damage": 18,
+      "dmgUpPer":20,
+      "cooldown": 2,
+      "mpCost": 15
+    },
+    "ultimate": {
+      "id": "ultimate",
+      "name": "绝招",
+      "description": "消耗爆气丸释放强力范围伤害",
+      "level": 0,
+      "maxLevel": 3,
+      "damage": 80,
+      "dmgUpPer":20,
+      "cooldown": 10,
+      "mpCost": 0
+    },
+    "jin_zhong_zhao": {
+      "id": "jin_zhong_zhao",
+      "name": "金钟罩",
+      "description": "展示金黄色光罩，持续 10 秒免疫伤害",
+      "level": 0,
+      "maxLevel": 3,
+      "damage": 0,
+      "dmgUpPer":0,
+      "duration": 10,
+      "cooldown": 15,
+      "mpCost": 5
+    },
+    "lei_guang_dun": {
+      "id": "lei_guang_dun",
+      "name": "雷光盾",
+      "description": "展示蓝白色电光圈，怪物触碰时受伤",
+      "level": 0,
+      "maxLevel": 3,
+      "damage": 1,
+      "dmgUpPer":20,
+      "cooldown": 12,
+      "mpCost": 5
+    },
+    "huo_yan": {
+      "id": "huo_yan",
+      "name": "火眼",
+      "description": "增大 20% 视野和掉落物吸引范围",
+      "level": 0,
+      "maxLevel": 3,
+      "damage": 0,
+      "dmgUpPer":0,
+      "cooldown": 20,
+      "mpCost": 2
+    },
+    "wan_jian_jue": {
+      "id": "wan_jian_jue",
+      "name": "万剑诀",
+      "description": "消耗大量法力以角色为中心一次性向周围发射 20 把均匀角度的飞剑，伤害值较高",
+      "level": 0,
+      "maxLevel": 10,
+      "damage": 80,
+      "dmgUpPer":30,
+      "cooldown": 15,
+      "mpCost": 50
+    },
+    "tian_huo_liu_xing": {
+      "id": "tian_huo_liu_xing",
+      "name": "天火流星",
+      "description": "从天而降的大量陨石，在地面砸出持续 3 秒的燃烧特效，触碰到的怪物会扣血",
+      "level": 0,
+      "maxLevel": 10,
+      "damage": 60,
+      "dmgUpPer":25,
+      "cooldown": 20,
+      "mpCost": 40
+    },
+    "long_juan_feng": {
+      "id": "long_juan_feng",
+      "name": "龙卷风",
+      "description": "以主角为中心吹出 3 股龙卷风，持续 3 秒，吹飞的怪物会被吹离 30% 视野半径的距离",
+      "level": 0,
+      "maxLevel": 10,
+      "damage": 30,
+      "dmgUpPer":20,
+      "cooldown": 18,
+      "mpCost": 35
+    },
+    "yan_shuang_fei": {
+      "id": "yan_shuang_fei",
+      "name": "燕双飞",
+      "description": "在角色周围环绕飞行的燕子，当附近有怪物时会投掷小石子攻击",
+      "level": 0,
+      "maxLevel": 10,
+      "damage": 35,
+      "dmgUpPer":22,
+      "cooldown": 20,
+      "mpCost": 4
+    },
+    "geng_jin_jian_zhen": {
+      "id": "geng_jin_jian_zhen",
+      "name": "庚金剑阵",
+      "description": "在主角位置刷新剑阵，进入剑阵的怪物会受到雷剑伤害并附带麻痹效果",
+      "level": 0,
+      "maxLevel": 10,
+      "damage": 50,
+      "dmgUpPer":15,
+      "cooldown": 25,
+      "mpCost": 45
+    }
+  },
+  
+"attribute":[
+    { "type":"att","id": "jian_ti", "name":"健体", "description": "+10 气血上限，+5 防御","level":1 },
+    { "type":"att","id": "duan_lian", "name":"锻炼", "description": "+5 攻击力","level":1 },
+    { "type":"att","id": "hu_jia", "name":"护甲", "description": "+2 防御力","level":1 },
+    { "type":"att","id": "ming_xiang", "name":"冥想", "description": "+1 法力恢复值","level":1 },
+    { "type":"att","id": "tower_upgrade", "name":"强化建筑", "description": "所有防御塔等级 +1","level":1 }
+]
+}
