@@ -86,8 +86,28 @@ class Game {
      */
     resizeCanvas() {
         const container = document.getElementById('game-container');
-        this.canvas.width = container.clientWidth;
-        this.canvas.height = container.clientHeight;
+        let width = container.clientWidth;
+        let height = container.clientHeight;
+        
+        // 修复 Exeify/WebView 中 container.clientWidth 可能为 0 的问题
+        // 使用 window.innerWidth/Height 作为 fallback
+        if (width === 0 || height === 0) {
+            console.warn('resizeCanvas: container size is 0, using window.innerWidth/Height as fallback');
+            width = window.innerWidth;
+            height = window.innerHeight;
+        }
+        
+        if (width === 0 || height === 0) {
+            console.warn('resizeCanvas: still 0, retrying via RAF');
+            requestAnimationFrame(() => this.resizeCanvas());
+            return;
+        }
+        
+        this.canvas.width = width;
+        this.canvas.height = height;
+        
+        console.log(`Canvas resized: ${width}x${height}`);
+        
     }
     
     /**
@@ -176,6 +196,10 @@ class Game {
         uiMgr.hideLevelUpPanel();
         uiMgr.clearBattleLog();
         console.warn('===开始游戏：',dungeonId);
+        
+        // 确保画布在游戏界面显示后正确调整尺寸（修复 Exeify/WebView 中 canvas 为 0x0 的问题）
+        this.resizeCanvas();
+        
         this.initGame();
         let roleD = dataMgr.getRoleData();
         // 记录进入战场时的等级
@@ -206,9 +230,12 @@ class Game {
         if (this.petManager) {
             this.petManager.createPet(this.player);
         }
-        // 初始化游戏循环:设置当前时间戳
+        // 初始化游戏循环：使用 RAF 延迟一帧，确保布局在 WebView 中完成后再启动
         this.lastTime = performance.now();
-        requestAnimationFrame((t) => this.gameLoop(t));
+        requestAnimationFrame(() => {
+            this.lastTime = performance.now();
+            requestAnimationFrame((t) => this.gameLoop(t));
+        });
     }
     
     /**
@@ -273,19 +300,36 @@ class Game {
     gameLoop(timestamp) {
         if (this.state !== GameState.PLAYING) return;
         
-        const dt = Math.min((timestamp - this.lastTime) / 1000, 0.1);
-        this.lastTime = timestamp;
-        
-        // 检查定时存档
-        const currentTime = Date.now();
-        if (currentTime - this.lastSaveTime >= this.autoSaveInterval) {
-            this.lastSaveTime = currentTime;
-            dataMgr.saveLocal();
-            console.log('定时存档完成');
-        }
-        
-        // 检查疲劳点恢复
-        this.recoverFatigue();
+        try {
+            const dt = Math.min((timestamp - this.lastTime) / 1000, 0.1);
+            this.lastTime = timestamp;
+            
+            // === 诊断日志：第一帧输出关键变量 ===
+            if (!this._diagnosticLogged) {
+                this._diagnosticLogged = true;
+                console.warn('=== DIAGNOSTIC: gameLoop first frame ===');
+                console.warn('canvas.width:', this.canvas.width, 'canvas.height:', this.canvas.height);
+                console.warn('container.clientWidth:', document.getElementById('game-container').clientWidth,
+                    'clientHeight:', document.getElementById('game-container').clientHeight);
+                console.warn('window.innerWidth:', window.innerWidth, 'innerHeight:', window.innerHeight);
+                console.warn('devicePixelRatio:', window.devicePixelRatio);
+                console.warn('cameraX:', this.cameraX, 'cameraY:', this.cameraY);
+                console.warn('player:', this.player ? `x=${this.player.x},y=${this.player.y}` : 'NULL');
+                console.warn('monsters.length:', this.monsters ? this.monsters.length : 'N/A');
+                console.warn('state:', this.state);
+                console.warn('=== DIAGNOSTIC END ===');
+            }
+            
+            // 检查定时存档
+            const currentTime = Date.now();
+            if (currentTime - this.lastSaveTime >= this.autoSaveInterval) {
+                this.lastSaveTime = currentTime;
+                dataMgr.saveLocal();
+                console.log('定时存档完成');
+            }
+            
+            // 检查疲劳点恢复
+            this.recoverFatigue();
         
         this.accumTime += dt;
         if (this.accumTime >= this.updateInterval) {
@@ -295,6 +339,11 @@ class Game {
         
         this.render();
         requestAnimationFrame((t) => this.gameLoop(t));
+        } catch (e) {
+            console.error('=== gameLoop ERROR:', e.message, e.stack);
+            // 出错后仍然尝试继续运行
+            requestAnimationFrame((t) => this.gameLoop(t));
+        }
     }
     
     /**
