@@ -837,35 +837,11 @@
         <div id="equipment-toast" class="equipment-toast hidden"></div>
     </div>
     
-    <!-- Core modules -->
-    <script src="js/core/config.js"></script>
-    <script type="module" src="js/core/dataMgr.js"></script> 
-    <script src="js/core/wave-manager.js"></script>
-    <script src="js/core/renderer.js"></script>
+    <!-- Bundle: all JS combined into single file (fixes ES module CORS issue in Exeify WebView) -->
+    <script src="js/bundle.js"></script>
     
-    <!-- Entity modules -->
-    <script type="module" src="js/entity/player.js"></script>
-    <script src="js/entity/monster.js"></script>
-    <script src="js/entity/drop.js"></script>
-    <script src="js/entity/skill-box.js"></script>
-    <script src="js/entity/tower.js"></script>
-    <script src="js/entity/pet.js"></script>
-    
-    <!-- Skill modules -->
-    <script src="js/skill/effect.js"></script>
-    
-    <!-- UI modules -->
-    <script type="module" src="js/ui/uiMgr.js"></script>
-    <script src="js/ui/joystick.js"></script>
-    
-    <!-- Main game -->
-    <script type="module" src="js/game.js"></script>
-    
-    <script type="module">
-        import { dataMgr } from './js/core/dataMgr.js';
-        import { uiMgr } from './js/ui/uiMgr.js';
-
-        // 初始化游戏
+    <script>
+        // 初始化游戏（注意：dataMgr 和 uiMgr 现在是 bundle.js 中的全局变量）
         window.addEventListener('load', function() {
             // 显示欢迎屏幕动画
             const welcomeScreen = document.getElementById('welcome-screen');
